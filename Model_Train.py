@@ -2,7 +2,7 @@ import copy
 import time
 import joblib
 import pandas as pd
-from EFISS_ES import EFISS_ES_FeatureSelection
+from TPFS import TPFS_FeatureSelection
 from FeatureExtract import *
 from MLModel import *
 np.set_printoptions(suppress=True)
@@ -93,7 +93,7 @@ def getFeatures(original=True, sORFs=None):
                 test_x['fabaceae_independent_test'] = fabaceae_independent_test_features[key]
                 test_x['hybirdspecies_independent_test'] = hybirdspecies_independent_test_features[key]
         
-                filtered_feature = EFISS_ES_FeatureSelection(train_features_bds, train_labels_bds, 0.3, 0.5)            
+                filtered_feature = TPFS_FeatureSelection(train_features_bds, train_labels_bds, 0.3, 0.5)            
                 opt_feature_info[key] = len(filtered_feature)
                 if len(filtered_feature) != 0:
                     train_features_bds = train_features_bds[:, filtered_feature]
@@ -138,7 +138,7 @@ def getFeatures(original=True, sORFs=None):
             test_x['fabaceae_independent_test'] = fabaceae_independent_test_features[key]
             test_x['hybirdspecies_independent_test'] = hybirdspecies_independent_test_features[key]
     
-            filtered_feature = EFISS_ES_FeatureSelection(train_features_bds, train_labels_bds, 0.3, 0.5)
+            filtered_feature = TPFS_FeatureSelection(train_features_bds, train_labels_bds, 0.3, 0.5)
             opt_feature_info[key] = len(filtered_feature)
             if len(filtered_feature) != 0:
                 train_features_bds = train_features_bds[:, filtered_feature]
